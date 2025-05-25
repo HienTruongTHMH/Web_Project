@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Register Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#f8d6cf] min-h-screen flex items-center justify-center px-4">
+
+  <!-- Main container -->
+  <div class="bg-white w-full max-w-5xl rounded-2xl shadow-lg flex flex-col lg:flex-row overflow-hidden">
+
+    <!-- Left side (image + logo) - ẩn trên mobile -->
+    <div class="hidden lg:flex w-1/2 bg-white relative p-8 items-center justify-center">
+      <!-- Logo -->
+      <img src="imgs/cf-logo.png" alt="CF Logo" class="absolute top-6 left-6 w-12 h-12" />
+      <!-- Ảnh burger -->
+      <img src="imgs/burger.png" alt="Burger" class="max-w-full h-auto drop-shadow-xl" />
+    </div>
+
+    <!-- Right side (form) -->
+    <div class="w-full lg:w-1/2 bg-white flex items-center justify-center p-6 sm:p-10">
+      <div class="bg-[#ffe0d1] p-6 sm:p-10 rounded-2xl w-full max-w-sm shadow-md">
+        <h2 class="text-2xl font-semibold text-center mb-6 text-gray-800">Create Account</h2>
+        
+        <form class="space-y-4">
+          <div>
+            <label class="block font-medium mb-1">Name</label>
+            <input type="text" placeholder="Your name" class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-400">
+          </div>
+
+          <div>
+            <label class="block font-medium mb-1">Email</label>
+            <input type="email" placeholder="Username@gmail.com" class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-400">
+          </div>
+
+          <div>
+            <label class="block font-medium mb-1">Password</label>
+            <input type="password" placeholder="Password" class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-400">
+          </div>
+
+          <button type="submit" class="w-full bg-orange-500 text-white py-2 rounded-md hover:bg-orange-600 transition">
+            Sign up
+          </button>
+        </form>
+
+        <div class="text-center mt-6 text-sm text-gray-600">Or continue with</div>
+        <div class="flex justify-center gap-4 mt-4">
+          <button class="bg-white border border-gray-300 rounded-full w-10 h-10 flex items-center justify-center hover:shadow">
+            <img src="https://cdn-icons-png.flaticon.com/512/300/300221.png" alt="Google" class="w-5 h-5">
+          </button>
+          <button class="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-blue-700">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-5 h-5" viewBox="0 0 24 24">
+              <path d="M22 12.07C22 6.5 17.52 2 12 2S2 6.5 2 12.07c0 4.8 3.44 8.77 8 9.78v-6.91H7v-2.87h3V9.5c0-3 1.8-4.67 4.52-4.67 1.3 0 2.66.24 2.66.24v2.93h-1.5c-1.48 0-1.94.93-1.94 1.88v2.25h3.31l-.53 2.87h-2.78v6.91c4.56-1.01 8-4.98 8-9.78z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
