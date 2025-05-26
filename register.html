@@ -1,64 +1,346 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Register Page</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-[#f8d6cf] min-h-screen flex items-center justify-center px-4">
-
-  <!-- Main container -->
-  <div class="bg-white w-full max-w-5xl rounded-2xl shadow-lg flex flex-col lg:flex-row overflow-hidden">
-
-    <!-- Left side (image + logo) - ẩn trên mobile -->
-    <div class="hidden lg:flex w-1/2 bg-white relative p-8 items-center justify-center">
-      <!-- Logo -->
-      <img src="imgs/logo.png" alt="CF Logo" class="absolute top-6 left-6 w-12 h-12" />
-      <!-- Ảnh burger -->
-      <img src="imgs/burger.png" alt="Burger" class="max-w-full h-auto drop-shadow-xl" />
-    </div>
-
-    <!-- Right side (form) -->
-    <div class="w-full lg:w-1/2 bg-white flex items-center justify-center p-6 sm:p-10">
-      <div class="bg-[#ffe0d1] p-6 sm:p-10 rounded-2xl w-full max-w-sm shadow-md">
-        <h2 class="text-2xl font-semibold text-center mb-6 text-gray-800">Create Account</h2>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Food Recipe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#ff6b35',
+                        'primary-dark': '#e55a2b',
+                        'primary-light': '#f7931e'
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-random': 'floatRandom 8s ease-in-out infinite'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
         
-        <form class="space-y-4">
-          <div>
-            <label class="block font-medium mb-1">Name</label>
-            <input type="text" placeholder="Your name" class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-400">
-          </div>
-
-          <div>
-            <label class="block font-medium mb-1">Email</label>
-            <input type="email" placeholder="Username@gmail.com" class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-400">
-          </div>
-
-          <div>
-            <label class="block font-medium mb-1">Password</label>
-            <input type="password" placeholder="Password" class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-400">
-          </div>
-
-          <button type="submit" class="w-full bg-orange-500 text-white py-2 rounded-md hover:bg-orange-600 transition">
-            Sign up
-          </button>
-        </form>
-
-        <div class="text-center mt-6 text-sm text-gray-600">Or continue with</div>
-        <div class="flex justify-center gap-4 mt-4">
-          <button class="bg-white border border-gray-300 rounded-full w-10 h-10 flex items-center justify-center hover:shadow">
-            <img src="https://cdn-icons-png.flaticon.com/512/300/300221.png" alt="Google" class="w-5 h-5">
-          </button>
-          <button class="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-blue-700">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-5 h-5" viewBox="0 0 24 24">
-              <path d="M22 12.07C22 6.5 17.52 2 12 2S2 6.5 2 12.07c0 4.8 3.44 8.77 8 9.78v-6.91H7v-2.87h3V9.5c0-3 1.8-4.67 4.52-4.67 1.3 0 2.66.24 2.66.24v2.93h-1.5c-1.48 0-1.94.93-1.94 1.88v2.25h3.31l-.53 2.87h-2.78v6.91c4.56-1.01 8-4.98 8-9.78z"/>
-            </svg>
-          </button>
-        </div>
-      </div>
+        @keyframes floatRandom {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(20px, -20px) rotate(90deg); }
+            50% { transform: translate(-15px, -30px) rotate(180deg); }
+            75% { transform: translate(-25px, 10px) rotate(270deg); }
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .animate-float-random {
+            animation: floatRandom 8s ease-in-out infinite;
+        }
+        
+        .backdrop-blur-custom {
+            backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 to-blue-100 min-h-screen">
+    <!-- Logo -->
+    <div class="absolute top-8 left-8 w-12 h-12 bg-primary rounded-xl flex items-center justify-center text-white font-bold text-xl z-10">
+        CF
     </div>
 
-  </div>
+    <!-- Main Content -->
+    <div class="flex items-center justify-center min-h-screen p-4">
+        <div class="flex flex-col lg:flex-row bg-white/95 backdrop-blur-custom rounded-3xl shadow-2xl overflow-hidden max-w-6xl w-full">
+            <!-- Left Section - Food Image -->
+            <div class="flex-1 flex items-center justify-center p-6 lg:p-12 relative overflow-hidden">
+                <!-- Floating Elements -->
+                <div class="absolute inset-0 pointer-events-none">
+                    <div class="absolute top-1/4 left-1/10 w-5 h-5 bg-primary/60 rounded-full animate-float-random"></div>
+                    <div class="absolute top-3/5 right-1/6 w-5 h-5 bg-primary/60 rounded-full animate-float-random" style="animation-delay: 2s;"></div>
+                    <div class="absolute bottom-1/3 left-1/5 w-5 h-5 bg-primary/60 rounded-full animate-float-random" style="animation-delay: 4s;"></div>
+                    <div class="absolute top-1/2 right-1/4 w-3 h-3 bg-primary-light/50 rounded-full animate-float-random" style="animation-delay: 1s;"></div>
+                    <div class="absolute bottom-1/4 right-1/3 w-4 h-4 bg-primary/40 rounded-full animate-float-random" style="animation-delay: 3s;"></div>
+                </div>
+                
+                <!-- Pizza Image with realistic appearance -->
+                <div class="w-full max-w-md h-64 lg:h-80 relative animate-float">
+                    <div class="absolute inset-4 flex flex-col justify-center items-center text-6xl lg:text-8xl">
+                        🍕
+                    </div>
+                </div>
+                
+                <!-- Welcome Text -->
+                <div class="absolute bottom-8 left-8 right-8 text-center">
+                    <h2 class="text-2xl lg:text-3xl font-bold text-gray-700 mb-2">Join Our Community</h2>
+                    <p class="text-gray-500">Discover thousands of delicious recipes</p>
+                </div>
+            </div>
+
+            <!-- Right Section - Sign Up Container -->
+            <div class="w-full lg:w-[28rem] p-6 lg:p-8 flex flex-col justify-center relative bg-gradient-to-br from-pink-50/80 to-orange-50/80 backdrop-blur-sm">
+                
+                <!-- Sign Up Block Container -->
+                <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-6 lg:p-8 shadow-lg border border-white/50 max-h-[90vh] overflow-y-auto">
+                    <form class="w-full space-y-4">
+                        <h1 class="text-3xl lg:text-4xl font-bold text-gray-800 text-center mb-6">Sign Up</h1>
+                        
+                        <!-- Name Fields -->
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <div class="flex-1 space-y-1">
+                                <label class="block text-gray-600 font-medium mb-2">First Name</label>
+                                <input 
+                                    type="text" 
+                                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all bg-white/80 focus:bg-white" 
+                                    placeholder="John"
+                                    required
+                                >
+                            </div>
+                            <div class="flex-1 space-y-1">
+                                <label class="block text-gray-600 font-medium mb-2">Last Name</label>
+                                <input 
+                                    type="text" 
+                                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all bg-white/80 focus:bg-white" 
+                                    placeholder="Doe"
+                                    required
+                                >
+                            </div>
+                        </div>
+                        
+                        <!-- Email -->
+                        <div class="space-y-1">
+                            <label class="block text-gray-600 font-medium mb-2">Email</label>
+                            <input 
+                                type="email" 
+                                class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all bg-white/80 focus:bg-white" 
+                                placeholder="john.doe@gmail.com"
+                                required
+                            >
+                        </div>
+                        
+                        <!-- Phone -->
+                        <div class="space-y-1">
+                            <label class="block text-gray-600 font-medium mb-2">Phone Number</label>
+                            <input 
+                                type="tel" 
+                                class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all bg-white/80 focus:bg-white" 
+                                placeholder="+84 123 456 789"
+                            >
+                        </div>
+                        
+                        <!-- Password -->
+                        <div class="space-y-1">
+                            <label class="block text-gray-600 font-medium mb-2">Password</label>
+                            <div class="relative">
+                                <input 
+                                    type="password" 
+                                    id="passwordInput"
+                                    class="w-full px-4 py-3 pr-12 border-2 border-gray-200 rounded-xl focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all bg-white/80 focus:bg-white" 
+                                    placeholder="Password"
+                                    required
+                                >
+                                <button type="button" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600" onclick="togglePassword('passwordInput')">
+                                    👁
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Confirm Password -->
+                        <div class="space-y-1">
+                            <label class="block text-gray-600 font-medium mb-2">Confirm Password</label>
+                            <div class="relative">
+                                <input 
+                                    type="password" 
+                                    id="confirmPasswordInput"
+                                    class="w-full px-4 py-3 pr-12 border-2 border-gray-200 rounded-xl focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all bg-white/80 focus:bg-white" 
+                                    placeholder="Confirm Password"
+                                    required
+                                >
+                                <button type="button" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600" onclick="togglePassword('confirmPasswordInput')">
+                                    👁
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Terms and Conditions -->
+                        <div class="flex items-start space-x-3 pt-2">
+                            <input 
+                                type="checkbox" 
+                                id="terms" 
+                                class="w-5 h-5 text-primary border-2 border-gray-300 rounded focus:ring-primary focus:ring-2 mt-0.5"
+                                required
+                            >
+                            <label for="terms" class="text-sm text-gray-600 leading-relaxed">
+                                I agree to the 
+                                <a href="#" class="text-primary hover:text-primary-dark font-semibold transition-colors">Terms of Service</a> 
+                                and 
+                                <a href="#" class="text-primary hover:text-primary-dark font-semibold transition-colors">Privacy Policy</a>
+                            </label>
+                        </div>
+                        
+                        <!-- Newsletter Subscription -->
+                        <div class="flex items-center space-x-3">
+                            <input 
+                                type="checkbox" 
+                                id="newsletter" 
+                                class="w-5 h-5 text-primary border-2 border-gray-300 rounded focus:ring-primary focus:ring-2"
+                            >
+                            <label for="newsletter" class="text-sm text-gray-600">
+                                Subscribe to our newsletter for recipe updates
+                            </label>
+                        </div>
+                        
+                        <button 
+                            type="submit" 
+                            class="w-full bg-gradient-to-r from-orange-400 to-orange-500 text-black py-3 px-4 rounded-xl font-semibold text-lg hover:shadow-lg hover:shadow-orange-400/30 hover:-translate-y-1 transition-all duration-300 mt-6 border-2 border-orange-500"
+                        >
+                            Create Account
+                        </button>
+                        
+                        <div class="relative text-center text-gray-500 my-4">
+                            <div class="absolute inset-0 flex items-center">
+                                <div class="w-full border-t border-gray-200"></div>
+                            </div>
+                            <div class="relative bg-white px-4">
+                                <span>Or sign up with</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <button 
+                                type="button" 
+                                class="flex-1 flex items-center justify-center px-4 py-3 border-2 border-gray-200 rounded-xl hover:border-primary hover:-translate-y-1 hover:shadow-lg transition-all duration-300 bg-white font-medium"
+                                onclick="handleGoogleSignup()"
+                            >
+                                <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24">
+                                    <path fill="#4285f4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                                    <path fill="#34a853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                                    <path fill="#fbbc05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                                    <path fill="#ea4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                                </svg>
+                                Google
+                            </button>
+                            <button 
+                                type="button" 
+                                class="flex-1 flex items-center justify-center px-4 py-3 border-2 border-gray-200 rounded-xl hover:border-primary hover:-translate-y-1 hover:shadow-lg transition-all duration-300 bg-white font-medium"
+                                onclick="handleFacebookSignup()"
+                            >
+                                <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="#1877f2">
+                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                </svg>
+                                Facebook
+                            </button>
+                        </div>
+                        
+                        <div class="text-center text-gray-600 mt-4">
+                            Already have an account? 
+                            <a href="#" class="text-primary hover:text-primary-dark font-semibold transition-colors">Sign in here</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword(inputId) {
+            const passwordInput = document.getElementById(inputId);
+            const toggleBtn = passwordInput.nextElementSibling;
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleBtn.textContent = '🙈';
+            } else {
+                passwordInput.type = 'password';
+                toggleBtn.textContent = '👁';
+            }
+        }
+
+        // Form validation and submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const password = document.getElementById('passwordInput').value;
+            const confirmPassword = document.getElementById('confirmPasswordInput').value;
+            const termsCheckbox = document.getElementById('terms');
+            
+            // Check if passwords match
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+            
+            // Check if terms are accepted
+            if (!termsCheckbox.checked) {
+                alert('Please accept the Terms of Service and Privacy Policy to continue.');
+                return;
+            }
+            
+            // Check password strength
+            if (password.length < 6) {
+                alert('Password must be at least 6 characters long!');
+                return;
+            }
+            
+            alert('Account created successfully! Welcome to Food Recipe!');
+        });
+
+        // Social signup buttons
+        function handleGoogleSignup() {
+            alert('Google sign up clicked!');
+        }
+
+        function handleFacebookSignup() {
+            alert('Facebook sign up clicked!');
+        }
+
+        // Real-time password matching validation
+        document.getElementById('confirmPasswordInput').addEventListener('input', function() {
+            const password = document.getElementById('passwordInput').value;
+            const confirmPassword = this.value;
+            
+            if (confirmPassword && password !== confirmPassword) {
+                this.style.borderColor = '#ef4444';
+            } else {
+                this.style.borderColor = '';
+            }
+        });
+
+        // Password strength indicator
+        document.getElementById('passwordInput').addEventListener('input', function() {
+            const password = this.value;
+            const strength = getPasswordStrength(password);
+            
+            // Remove existing strength indicator
+            const existingIndicator = this.parentNode.querySelector('.password-strength');
+            if (existingIndicator) {
+                existingIndicator.remove();
+            }
+            
+            if (password.length > 0) {
+                const indicator = document.createElement('div');
+                indicator.className = 'password-strength text-xs mt-1';
+                indicator.innerHTML = `Password strength: <span class="${strength.color}">${strength.text}</span>`;
+                this.parentNode.appendChild(indicator);
+            }
+        });
+
+        function getPasswordStrength(password) {
+            if (password.length < 6) {
+                return { text: 'Weak', color: 'text-red-500' };
+            } else if (password.length < 8) {
+                return { text: 'Fair', color: 'text-yellow-500' };
+            } else if (password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/)) {
+                return { text: 'Strong', color: 'text-green-500' };
+            } else {
+                return { text: 'Good', color: 'text-blue-500' };
+            }
+        }
+    </script>
 </body>
 </html>
