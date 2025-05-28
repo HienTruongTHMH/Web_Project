@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+    <!-- Style cho search tool -->
+     <style>
+        .search-overlay {
+            backdrop-filter: blur(8px);
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .search-modal {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        .ingredient-tag {
+            transition: all 0.2s ease;
+        }
+        .ingredient-tag:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        .ingredient-tag.selected {
+            background-color: #3B82F6;
+            color: white;
+        }
+        .recipe-card {
+            transition: all 0.3s ease;
+        }
+        .recipe-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+<body>
+ <!-- Search Overlay -->
+    <div id="searchOverlay" class="fixed inset-0 search-overlay z-50 hidden">
+        <div class="min-h-screen px-4 py-8 flex items-start justify-center">
+            <div class="search-modal bg-gray-50 rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden">
+                <!-- Header -->
+                <div class="bg-white px-6 py-4 border-b border-gray-200 flex items-center justify-between">
+                    <h2 class="text-xl font-semibold text-gray-800">Tìm kiếm công thức</h2>
+                    <button id="closeSearchBtn" class="text-gray-500 hover:text-gray-700 text-2xl">×</button>
+                </div>
+
+                <div class="overflow-y-auto max-h-[calc(90vh-80px)]">
+                    <div class="p-6">
+                        <!-- Search Input -->
+                        <div class="mb-6">
+                            <input 
+                                type="text" 
+                                id="searchInput"
+                                placeholder="Tìm kiếm món ăn, nguyên liệu..." 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-lg"
+                            >
+                        </div>
+
+                        <!-- Last Search -->
+                        <div class="mb-8">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Last search</h3>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="ingredient-tag bg-gray-200 px-4 py-2 rounded-full text-sm cursor-pointer hover:bg-gray-300">Cơm chiên trứng</span>
+                                <span class="ingredient-tag bg-gray-200 px-4 py-2 rounded-full text-sm cursor-pointer hover:bg-gray-300">Cơm chiên trứng</span>
+                                <span class="ingredient-tag bg-gray-200 px-4 py-2 rounded-full text-sm cursor-pointer hover:bg-gray-300">Cơm chiên trứng</span>
+                                <span class="ingredient-tag bg-gray-200 px-4 py-2 rounded-full text-sm cursor-pointer hover:bg-gray-300">Cơm chiên trứng</span>
+                            </div>
+                        </div>
+
+                        <!-- Food you have -->
+                        <div class="mb-8">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Food you have</h3>
+                            <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+                                <label class="ingredient-tag bg-white border border-gray-300 px-4 py-3 rounded-full text-sm cursor-pointer hover:border-blue-400 flex items-center">
+                                    <input type="radio" name="ingredient" value="trung" class="mr-2 text-blue-600">
+                                    <span>Trứng</span>
+                                </label>
+                                <label class="ingredient-tag bg-white border border-gray-300 px-4 py-3 rounded-full text-sm cursor-pointer hover:border-blue-400 flex items-center">
+                                    <input type="radio" name="ingredient" value="bo" class="mr-2 text-blue-600">
+                                    <span>Bò</span>
+                                </label>
+                                <label class="ingredient-tag bg-white border border-gray-300 px-4 py-3 rounded-full text-sm cursor-pointer hover:border-blue-400 flex items-center">
+                                    <input type="radio" name="ingredient" value="heo" class="mr-2 text-blue-600">
+                                    <span>Heo</span>
+                                </label>
+                                <label class="ingredient-tag bg-white border border-gray-300 px-4 py-3 rounded-full text-sm cursor-pointer hover:border-blue-400 flex items-center">
+                                    <input type="radio" name="ingredient" value="ga" class="mr-2 text-blue-600">
+                                    <span>Gà</span>
+                                </label>
+                                <label class="ingredient-tag bg-white border border-gray-300 px-4 py-3 rounded-full text-sm cursor-pointer hover:border-blue-400 flex items-center">
+                                    <input type="radio" name="ingredient" value="ca-chua" class="mr-2 text-blue-600">
+                                    <span>Cà chua</span>
+                                </label>
+                                <label class="ingredient-tag bg-white border border-gray-300 px-4 py-3 rounded-full text-sm cursor-pointer hover:border-blue-400 flex items-center">
+                                    <input type="radio" name="ingredient" value="com" class="mr-2 text-blue-600">
+                                    <span>Cơm</span>
+                                </label>
+                                <label class="ingredient-tag bg-white border border-gray-300 px-4 py-3 rounded-full text-sm cursor-pointer hover:border-blue-400 flex items-center">
+                                    <input type="radio" name="ingredient" value="trung2" class="mr-2 text-blue-600">
+                                    <span>Trứng</span>
+                                </label>
+                                <label class="ingredient-tag bg-white border border-gray-300 px-4 py-3 rounded-full text-sm cursor-pointer hover:border-blue-400 flex items-center">
+                                    <input type="radio" name="ingredient" value="trung3" class="mr-2 text-blue-600">
+                                    <span>Trứng</span>
+                                </label>
+                                <label class="ingredient-tag bg-white border border-gray-300 px-4 py-3 rounded-full text-sm cursor-pointer hover:border-blue-400 flex items-center">
+                                    <input type="radio" name="ingredient" value="trung4" class="mr-2 text-blue-600">
+                                    <span>Trứng</span>
+                                </label>
+                                <label class="ingredient-tag bg-white border border-gray-300 px-4 py-3 rounded-full text-sm cursor-pointer hover:border-blue-400 flex items-center">
+                                    <input type="radio" name="ingredient" value="trung5" class="mr-2 text-blue-600">
+                                    <span>Trứng</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Recommend -->
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Recommend</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                <div class="recipe-card bg-white rounded-xl overflow-hidden shadow-md cursor-pointer">
+                                    <div class="h-48 bg-gradient-to-br from-green-400 to-blue-500 relative overflow-hidden">
+                                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=400&h=300&fit=crop&crop=center" 
+                                             alt="Pasta Salad" 
+                                             class="w-full h-full object-cover">
+                                    </div>
+                                    <div class="p-4">
+                                        <h4 class="font-semibold text-gray-800 mb-2">Pasta Salad</h4>
+                                        <p class="text-sm text-gray-600 mb-3">Món salad pasta tươi mát với rau xanh và phô mai</p>
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-xs text-gray-500">⏱️ 20 phút</span>
+                                            <span class="text-xs text-gray-500">👥 4 người</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="recipe-card bg-white rounded-xl overflow-hidden shadow-md cursor-pointer">
+                                    <div class="h-48 bg-gradient-to-br from-yellow-400 to-orange-500 relative overflow-hidden">
+                                        <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=400&h=300&fit=crop&crop=center" 
+                                             alt="Fried Rice" 
+                                             class="w-full h-full object-cover">
+                                    </div>
+                                    <div class="p-4">
+                                        <h4 class="font-semibold text-gray-800 mb-2">Cơm chiên trứng</h4>
+                                        <p class="text-sm text-gray-600 mb-3">Cơm chiên trứng đơn giản, thơm ngon cho bữa sáng</p>
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-xs text-gray-500">⏱️ 15 phút</span>
+                                            <span class="text-xs text-gray-500">👥 2 người</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="recipe-card bg-white rounded-xl overflow-hidden shadow-md cursor-pointer">
+                                    <div class="h-48 bg-gradient-to-br from-red-400 to-pink-500 relative overflow-hidden">
+                                        <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&h=300&fit=crop&crop=center" 
+                                             alt="Soup" 
+                                             class="w-full h-full object-cover">
+                                    </div>
+                                    <div class="p-4">
+                                        <h4 class="font-semibold text-gray-800 mb-2">Canh cà chua trứng</h4>
+                                        <p class="text-sm text-gray-600 mb-3">Canh cà chua trứng thanh mát, bổ dưỡng</p>
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-xs text-gray-500">⏱️ 25 phút</span>
+                                            <span class="text-xs text-gray-500">👥 3 người</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
