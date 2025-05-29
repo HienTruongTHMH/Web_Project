@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Favourites</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-white text-gray-800">
+
+    <!-- Header -->
+    <header class="w-full border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-red-400 rounded-full"></div>
+            </div>
+            <!-- Navigation -->
+            <nav class="flex items-center space-x-8">
+                <a href="#" class="text-orange-500 font-medium">Home Page</a>
+                <button class="text-gray-800 font-medium flex items-center">Recipe Page</button>
+                <button class="text-gray-800 font-medium flex items-center">Favourites</button>
+            </nav>
+            <!-- Icons -->
+            <div class="flex items-center space-x-4">
+                <!-- Search icon -->
+                <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <circle cx="11" cy="11" r="8" stroke-width="2" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" stroke-width="2" />
+                </svg>
+                <!-- User icon -->
+                <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                </svg>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Title + sort -->
+        <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center space-x-2">
+                <div class="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center text-white">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 18.343l-6.828-6.829a4 4 0 010-5.656z" />
+                    </svg>
+                </div>
+                <h1 class="text-xl font-bold">Favourites</h1>
+            </div>
+            <select class="border border-gray-300 rounded px-2 py-1">
+                <option>Sort</option>
+            </select>
+        </div>
+
+        <!-- Controls -->
+        <div class="flex items-center space-x-6 text-sm text-gray-600 mb-6">
+            <span>(98 Recipes)</span>
+            <label class="flex items-center space-x-1">
+                <input type="checkbox" class="form-checkbox" />
+                <span>Select</span>
+            </label>
+            <label class="flex items-center space-x-1">
+                <input type="radio" name="selectAll" />
+                <span>All</span>
+            </label>
+            <button class="text-black flex items-center space-x-1">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M6 4a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V6a2 2 0 00-2-2H6zm3 2a1 1 0 012 0v6a1 1 0 11-2 0V6z"
+                        clip-rule="evenodd" />
+                </svg>
+                <span>Delete</span>
+            </button>
+        </div>
+
+        <!-- Grid of recipes -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8">
+            <!-- Repeat this block -->
+            <div class="flex flex-col items-center space-y-2">
+                <div class="w-32 h-32 bg-gray-300 rounded-full"></div>
+                <span class="text-sm font-medium">Seafood</span>
+            </div>
+            <!-- You can copy this block for multiple items -->
+            <!-- Item 2 -->
+            <div class="flex flex-col items-center space-y-2">
+                <div class="w-32 h-32 bg-green-100 rounded-full"></div>
+                <span class="text-sm font-medium">Pasta</span>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="flex flex-col items-center space-y-2">
+                <div class="w-32 h-32 bg-blue-100 rounded-full"></div>
+                <span class="text-sm font-medium">Salad</span>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="flex flex-col items-center space-y-2">
+                <div class="w-32 h-32 bg-yellow-100 rounded-full"></div>
+                <span class="text-sm font-medium">Burger</span>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="flex flex-col items-center space-y-2">
+                <div class="w-32 h-32 bg-purple-100 rounded-full"></div>
+                <span class="text-sm font-medium">Sushi</span>
+            </div>
+
+            <!-- Item 6 -->
+            <div class="flex flex-col items-center space-y-2">
+                <div class="w-32 h-32 bg-pink-100 rounded-full"></div>
+                <span class="text-sm font-medium">Pizza</span>
+            </div>
+
+            <!-- Item 7 -->
+            <div class="flex flex-col items-center space-y-2">
+                <div class="w-32 h-32 bg-orange-100 rounded-full"></div>
+                <span class="text-sm font-medium">Steak</span>
+            </div>
+
+            <!-- Item 8 -->
+            <div class="flex flex-col items-center space-y-2">
+                <div class="w-32 h-32 bg-teal-100 rounded-full"></div>
+                <span class="text-sm font-medium">Tacos</span>
+            </div>
+
+            <!-- Item 9 -->
+            <div class="flex flex-col items-center space-y-2">
+                <div class="w-32 h-32 bg-indigo-100 rounded-full"></div>
+                <span class="text-sm font-medium">Curry</span>
+            </div>
+
+            <!-- Item 10 -->
+            <div class="flex flex-col items-center space-y-2">
+                <div class="w-32 h-32 bg-lime-100 rounded-full"></div>
+                <span class="text-sm font-medium">Fried Rice</span>
+            </div>
+
+            <!-- Item 11 -->
+            <div class="flex flex-col items-center space-y-2">
+                <div class="w-32 h-32 bg-cyan-100 rounded-full"></div>
+                <span class="text-sm font-medium">BBQ</span>
+            </div>
+
+            <!-- Item 12 -->
+            <div class="flex flex-col items-center space-y-2">
+                <div class="w-32 h-32 bg-amber-100 rounded-full"></div>
+                <span class="text-sm font-medium">Noodles</span>
+            </div>
+
+            <!-- Item 13 -->
+            <div class="flex flex-col items-center space-y-2">
+                <div class="w-32 h-32 bg-sky-100 rounded-full"></div>
+                <span class="text-sm font-medium">Soup</span>
+            </div>
+
+            <!-- Item 14 -->
+            <div class="flex flex-col items-center space-y-2">
+                <div class="w-32 h-32 bg-rose-100 rounded-full"></div>
+                <span class="text-sm font-medium">Dim Sum</span>
+            </div>
+
+            <!-- Item 15 -->
+            <div class="flex flex-col items-center space-y-2">
+                <div class="w-32 h-32 bg-violet-100 rounded-full"></div>
+                <span class="text-sm font-medium">Pho</span>
+            </div>
+
+            <!-- Item 16 -->
+            <div class="flex flex-col items-center space-y-2">
+                <div class="w-32 h-32 bg-neutral-200 rounded-full"></div>
+                <span class="text-sm font-medium">Banh Mi</span>
+            </div>
+            <!-- ... (thêm bao nhiêu khối tuỳ bạn) ... -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 border-t border-gray-200 py-10 mt-10">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <div class="w-10 h-10 bg-red-400 rounded-full mb-3"></div>
+                <p class="text-sm text-gray-600">“On the other hand, we denounce with righteous indignation...”</p>
+            </div>
+            <div>
+                <h4 class="text-sm font-semibold text-gray-800 mb-2">Tastebite</h4>
+                <ul class="text-sm text-gray-600 space-y-1">
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Contact us</a></li>
+                    <li><a href="#">Feedback</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-sm font-semibold text-gray-800 mb-2">Legal</h4>
+                <ul class="text-sm text-gray-600 space-y-1">
+                    <li><a href="#">Terms</a></li>
+                    <li><a href="#">Cookies</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-sm font-semibold text-gray-800 mb-2">Follow</h4>
+                <ul class="text-sm text-gray-600 space-y-1">
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Instagram</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
