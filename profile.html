@@ -1,533 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tastebite - Profile</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-        }
-        
-        /* Header */
-        .header {
-            background: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            padding: 1rem 0;
-        }
-        
-        .nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 2rem;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #ff6b4a;
-        }
-        
-        .logo::before {
-            content: "🍴";
-            margin-right: 0.5rem;
-            font-size: 1.8rem;
-        }
-        
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: #666;
-            font-weight: 500;
-        }
-        
-        .nav-links a.active {
-            color: #ff6b4a;
-        }
-        
-        .nav-icons {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        .search-icon, .profile-icon {
-            width: 24px;
-            height: 24px;
-            cursor: pointer;
-        }
-        
-        /* Main Content */
-        .container {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 0 2rem;
-        }
-        
-        .profile-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-        
-        .profile-title {
-            font-size: 2rem;
-            font-weight: 600;
-            color: #333;
-        }
-        
-        .save-btn {
-            background: #ff6b4a;
-            color: white;
-            border: none;
-            padding: 0.75rem 2rem;
-            border-radius: 4px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        
-        .save-btn:hover {
-            background: #e55a3d;
-        }
-        
-        /* Profile Photo Section */
-        .profile-photo-section {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-        
-        .profile-photo {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: #e9ecef;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: #666;
-        }
-        
-        .change-photo-btn {
-            background: #ff6b4a;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 500;
-        }
-        
-        .delete-btn {
-            background: white;
-            color: #666;
-            border: 1px solid #ddd;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 500;
-        }
-        
-        /* Form Fields */
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-        
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .form-group label {
-            font-size: 0.8rem;
-            color: #666;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-        
-        .form-group input {
-            padding: 0.75rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
-            background: white;
-        }
-        
-        .form-group input:focus {
-            outline: none;
-            border-color: #ff6b4a;
-        }
-        
-        .password-field {
-            position: relative;
-        }
-        
-        .password-field input {
-            letter-spacing: 0.2rem;
-        }
-        
-        .change-link {
-            color: #ff6b4a;
-            text-decoration: none;
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
-            cursor: pointer;
-        }
-        
-        /* Connected Accounts */
-        .connected-accounts {
-            margin: 3rem 0;
-        }
-        
-        .section-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            color: #333;
-        }
-        
-        .account-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1rem 0;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .account-info {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        .facebook-icon {
-            color: #1877f2;
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-        
-        .google-icon {
-            font-weight: bold;
-            background: linear-gradient(45deg, #4285f4, #ea4335, #fbbc05, #34a853);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-size: 1.1rem;
-        }
-        
-        .account-name {
-            color: #666;
-            font-size: 0.9rem;
-        }
-        
-        .disconnect-btn {
-            color: #666;
-            text-decoration: none;
-            font-size: 0.9rem;
-            cursor: pointer;
-        }
-        
-        /* Newsletter */
-        .newsletter-section {
-            margin: 3rem 0;
-        }
-        
-        .newsletter-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
-        
-        .newsletter-text {
-            color: #666;
-            font-size: 0.95rem;
-        }
-        
-        .unsubscribe-btn {
-            background: white;
-            color: #666;
-            border: 1px solid #ddd;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 500;
-        }
-        
-        /* Bottom Actions */
-        .bottom-actions {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 3rem 0;
-            padding-top: 2rem;
-            border-top: 1px solid #eee;
-        }
-        
-        .sign-out-btn {
-            color: #666;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            cursor: pointer;
-        }
-        
-        .delete-account-btn {
-            color: #ff6b4a;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        
-        /* Footer */
-        .footer {
-            background: white;
-            margin-top: 4rem;
-            padding: 3rem 0;
-        }
-        
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 3rem;
-        }
-        
-        .footer-brand {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-        }
-        
-        .footer-brand .logo {
-            font-size: 1.5rem;
-        }
-        
-        .footer-quote {
-            font-style: italic;
-            color: #666;
-            line-height: 1.6;
-            max-width: 300px;
-        }
-        
-        .footer-section h4 {
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: #333;
-        }
-        
-        .footer-section ul {
-            list-style: none;
-        }
-        
-        .footer-section ul li {
-            margin-bottom: 0.5rem;
-        }
-        
-        .footer-section ul li a {
-            color: #666;
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-        
-        .footer-section ul li a:hover {
-            color: #ff6b4a;
-        }
-        
-        @media (max-width: 768px) {
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .nav {
-                padding: 0 1rem;
-            }
-            
-            .container {
-                padding: 0 1rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <!-- Header -->
-    <header class="header">
-        <nav class="nav">
-            <a href="index.html" class="hover:opacity-80 transition-opacity duration-200">
-         <img src="imgs/logo.png" alt="Logo" class="h-12 w-12 object-contain" />
-            </a>
-            <div class="nav-links">
-                <a href="#">Home Page</a>
-                <a href="#">Recipe Page</a>
-                <a href="#" class="active">Profile</a>
-            </div>
-            <div class="nav-icons">
-                <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                </svg>
-                <svg class="profile-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-                </svg>
-            </div>
-        </nav>
-    </header>
 
-    <!-- Main Content -->
-    <main class="container">
-        <div class="profile-header">
-            <h1 class="profile-title">Profile</h1>
-            <button class="save-btn">SAVE</button>
+<body class="bg-white text-gray-900">
+  <header class="flex justify-between items-center p-4 border-b">
+    <div class="text-2xl font-bold text-orange-500">CF</div>
+    <nav class="space-x-6">
+      <a href="#" class="hover:underline">Home Page</a>
+      <a href="#" class="hover:underline">Recipe Page</a>
+      <a href="#" class="hover:underline text-orange-500">Profile</a>
+    </nav>
+    <div class="flex items-center space-x-4">
+      <button><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg></button>
+      <button><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 15c2.5 0 4.847.657 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0z"></path></svg></button>
+    </div>
+  </header>
+
+  <main class="max-w-3xl mx-auto py-10 px-4">
+    <h1 class="text-2xl font-bold mb-6">Profile</h1>
+
+    <div class="flex items-center space-x-4 mb-6">
+      <div class="w-20 h-20 bg-gray-300 rounded-full"></div>
+      <button class="bg-orange-500 text-white px-4 py-2 rounded">Change photo</button>
+      <button class="border px-4 py-2 rounded">Delete</button>
+    </div>
+
+    <div class="space-y-6 mb-10">
+      <div>
+        <label class="text-gray-600">Full Name</label>
+        <input type="text" class="border-b border-gray-300 py-2 w-full" placeholder="Enter full name" value="Dang Hoang Viet" />
+      </div>
+      <div>
+        <label class="text-gray-600">Username</label>
+        <input type="text" class="border-b border-gray-300 py-2 w-full" placeholder="Enter username" value="Hehehe" />
+      </div>
+      <div>
+        <label class="text-gray-600">Email</label>
+        <input type="email" class="border-b border-gray-300 py-2 w-full" placeholder="Enter email" value="dang@hoangviet" />
+      </div>
+      <div>
+        <label class="text-gray-600">Password</label>
+        <div class="flex justify-between items-center border-b border-gray-300 py-2">
+          <input type="password" class="w-full" placeholder="Enter new password" value="password" />
+          <a href="#" class="text-orange-500 text-sm ml-2">Change</a>
         </div>
+      </div>
+    </div>
 
-        <!-- Profile Photo Section -->
-        <div class="profile-photo-section">
-            <div class="profile-photo">👤</div>
-            <button class="change-photo-btn">Change photo</button>
-            <button class="delete-btn">Delete</button>
-        </div>
+    <div class="mb-10">
+      <h2 class="font-semibold mb-4">Connected Accounts</h2>
+      <div class="flex justify-between items-center py-2 border-b">
+        <span class="text-blue-600">facebook</span>
+        <span class="text-sm text-gray-600">Dang Viet</span>
+        <button class="text-sm text-gray-600 hover:underline">Disconnect</button>
+      </div>
+      <div class="flex justify-between items-center py-2 border-b">
+        <span class="text-gray-800">Google</span>
+        <span class="text-sm text-gray-600">Dang Viet</span>
+        <button class="text-sm text-gray-600 hover:underline">Disconnect</button>
+      </div>
+    </div>
 
-        <!-- Form Fields -->
-        <div class="form-row">
-            <div class="form-group">
-                <label>FULL NAME</label>
-                <input type="text" value="Dang Hoang Viet" readonly>
-            </div>
-            <div class="form-group">
-                <label>USERNAME</label>
-                <input type="text" value="danghv" readonly>
-            </div>
-        </div>
+    <div class="mb-10">
+      <h2 class="font-semibold mb-4">Newsletter</h2>
+      <p class="mb-2">You are currently subscribed to our newsletter</p>
+      <button class="border px-4 py-2">Unsubscribe</button>
+    </div>
 
-        <div class="form-row">
-            <div class="form-group">
-                <label>EMAIL</label>
-                <input type="email" value="Dang@example.viet" readonly>
-            </div>
-            <div class="form-group password-field">
-                <label>PASSWORD</label>
-                <input type="password" value="••••••••" readonly>
-                <a href="#" class="change-link">Change</a>
-            </div>
-        </div>
+    <div class="flex justify-between items-center">
+      <button class="flex items-center space-x-2 text-sm hover:underline">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7"></path></svg>
+        <span>Sign out</span>
+      </button>
+      <button class="text-sm text-red-500 hover:underline">Delete Account</button>
+    </div>
 
-        <!-- Connected Accounts -->
-        <section class="connected-accounts">
-            <h2 class="section-title">Connected Accounts</h2>
-            
-            <div class="account-item">
-                <div class="account-info">
-                    <span class="facebook-icon">facebook</span>
-                    <div>
-                        <div style="font-weight: 500; color: #1877f2;">facebook</div>
-                        <div class="account-name">Dang Viet</div>
-                    </div>
-                </div>
-                <a href="#" class="disconnect-btn">Disconnect</a>
-            </div>
-
-            <div class="account-item">
-                <div class="account-info">
-                    <span class="google-icon">Google</span>
-                    <div>
-                        <div style="font-weight: 500;">Google</div>
-                        <div class="account-name">Dang Viet</div>
-                    </div>
-                </div>
-                <a href="#" class="disconnect-btn">Disconnect</a>
-            </div>
-        </section>
-
-        <!-- Newsletter -->
-        <section class="newsletter-section">
-            <h2 class="section-title">Newsletter</h2>
-            <div class="newsletter-content">
-                <span class="newsletter-text">You are currently subscribed to our newsletter</span>
-                <button class="unsubscribe-btn">Unsubscribe</button>
-            </div>
-        </section>
-
-        <!-- Bottom Actions -->
-        <div class="bottom-actions">
-            <a href="#" class="sign-out-btn">
-                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
-                </svg>
-                Sign out
-            </a>
-            <a href="#" class="delete-account-btn">Delete Account</a>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-brand">
-                <div class="logo">Tastebite</div>
-                <p class="footer-quote">"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment"</p>
-            </div>
-            
-            <div class="footer-section">
-                <h4>Tastebite</h4>
-                <ul>
-                    <li><a href="#">About us</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Contact us</a></li>
-                    <li><a href="#">Feedback</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-section">
-                <h4>Legal</h4>
-                <ul>
-                    <li><a href="#">Terms</a></li>
-                    <li><a href="#">Conditions</a></li>
-                    <li><a href="#">Cookies</a></li>
-                    <li><a href="#">Copyright</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-section">
-                <h4>Follow</h4>
-                <ul>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">Youtube</a></li>
-                </ul>
-            </div>
-        </div>
-    </footer>
+    <div class="text-right mt-10">
+      <button class="bg-orange-500 text-white px-6 py-2 rounded">SAVE</button>
+    </div>
+  </main>
 </body>
+
 </html>
+cdn.tailwindcss.com
